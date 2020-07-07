@@ -1,24 +1,17 @@
 package com.dtavana.parstagram.activities;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import com.dtavana.parstagram.R;
 import com.dtavana.parstagram.adapters.PostsAdapter;
 import com.dtavana.parstagram.databinding.ActivityMainBinding;
-import com.dtavana.parstagram.databinding.NavigationBinding;
 import com.dtavana.parstagram.models.Post;
 import com.dtavana.parstagram.utils.NavigationUtils;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.parse.FindCallback;
 import com.parse.ParseException;
 import com.parse.ParseQuery;
