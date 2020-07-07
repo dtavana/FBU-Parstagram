@@ -10,8 +10,10 @@ import android.widget.Toast;
 
 import com.dtavana.parstagram.databinding.ActivityLoginBinding;
 import com.parse.LogInCallback;
+import com.parse.Parse;
 import com.parse.ParseException;
 import com.parse.ParseUser;
+import com.parse.SignUpCallback;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -33,6 +35,33 @@ public class LoginActivity extends AppCompatActivity {
                 Log.i(TAG, "onClick: login button");
                 String username = binding.etUsername.getText().toString();
                 String password = binding.etPassword.getText().toString();
+                loginUser(username, password);
+            }
+        });
+
+        binding.btnSignup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(TAG, "onClick: signup button");
+                String username = binding.etUsername.getText().toString();
+                String password = binding.etPassword.getText().toString();
+                signupUser(username, password);
+            }
+        });
+    }
+
+    private void signupUser(final String username, final String password) {
+        Log.i(TAG, "signupUser: Attempting to signup user " + username);
+        ParseUser user = new ParseUser();
+        user.setUsername(username);
+        user.setPassword(password);
+        user.signUpInBackground(new SignUpCallback() {
+            @Override
+            public void done(ParseException e) {
+                if(e != null) {
+                    Log.e(TAG, "done: Error signing up", e);
+                    return;
+                }
                 loginUser(username, password);
             }
         });
