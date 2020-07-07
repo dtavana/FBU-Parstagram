@@ -2,6 +2,7 @@ package com.dtavana.parstagram.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -34,6 +35,20 @@ public class MainActivity extends AppCompatActivity {
         posts = new ArrayList<>();
         binding.rvPosts.setLayoutManager(new LinearLayoutManager(this));
         binding.rvPosts.setAdapter(new PostsAdapter(this, posts));
+
+        binding.swipeContainer.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                posts.clear();
+                Objects.requireNonNull(binding.rvPosts.getAdapter()).notifyDataSetChanged();
+                queryPosts();
+                binding.swipeContainer.setRefreshing(false);
+            }
+        });
+        binding.swipeContainer.setColorSchemeResources(android.R.color.holo_blue_bright,
+                android.R.color.holo_green_light,
+                android.R.color.holo_orange_light,
+                android.R.color.holo_red_light);
 
         queryPosts();
     }
