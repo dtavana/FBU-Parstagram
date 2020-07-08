@@ -3,30 +3,50 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="16dp"
-    android:orientation="vertical"
+    android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".activities.LoginActivity">
 
     <EditText
         android:id="@+id/etUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="username"/>
+        android:layout_below="@+id/imageView"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/colorAlmostBlack"
+        android:fontFamily="@font/roboto_thin"
+        android:hint="username"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        tools:text="Username" />
 
     <EditText
         android:id="@+id/etPassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etUsername"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@color/colorAlmostBlack"
+        android:fontFamily="@font/roboto_thin"
         android:hint="password"
-        android:inputType="textPassword" />
+        android:inputType="textPassword"
+        android:textColor="@android:color/white"
+        android:textColorHint="@android:color/white"
+        tools:text="Password" />
 
     <Button
         android:id="@+id/btnLogin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/etPassword"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/holo_blue_dark"
         android:text="Login" />
 
     <Button
@@ -34,5 +54,17 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/btnLogin"
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:background="@android:color/holo_green_dark"
         android:text="Signup" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="150dp"
+        app:srcCompat="@drawable/nux_dayone_landing_logo" />
 </RelativeLayout>
