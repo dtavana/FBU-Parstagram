@@ -4,9 +4,11 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
+import com.dtavana.parstagram.R;
 import com.dtavana.parstagram.databinding.ActivityPostDetailsBinding;
 import com.dtavana.parstagram.models.Post;
 import com.dtavana.parstagram.utils.GlideApp;
+import com.dtavana.parstagram.utils.NavigationUtils;
 
 import org.parceler.Parcels;
 
@@ -21,6 +23,9 @@ public class PostDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityPostDetailsBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        binding.navigation.getRoot().setSelectedItemId(R.id.miHome);
+        NavigationUtils.setupNavigationBar(this, MainActivity.class, binding.navigation.getRoot());
 
         post = Parcels.unwrap(getIntent().getParcelableExtra(Post.class.getSimpleName()));
 

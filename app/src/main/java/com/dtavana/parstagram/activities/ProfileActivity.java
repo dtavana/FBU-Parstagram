@@ -30,7 +30,6 @@ public class ProfileActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.navigation.getRoot().setSelectedItemId(R.id.miProfile);
-
         NavigationUtils.setupNavigationBar(this, ProfileActivity.class, binding.navigation.getRoot());
 
         binding.btnLogout.setOnClickListener(new View.OnClickListener() {

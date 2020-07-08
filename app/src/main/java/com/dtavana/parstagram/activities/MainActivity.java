@@ -35,7 +35,6 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.navigation.getRoot().setSelectedItemId(R.id.miHome);
-
         NavigationUtils.setupNavigationBar(this, MainActivity.class, binding.navigation.getRoot());
 
         posts = new ArrayList<>();
