@@ -1,27 +1,44 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
-    android:layout_margin="16dp"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
+    android:orientation="vertical"
     tools:context=".activities.MainActivity">
 
     <include
-        layout="@layout/navigation"
-        android:id="@+id/navigation" />
+        android:id="@+id/navigation"
+        layout="@layout/navigation" />
+
+    <ImageView
+        android:id="@+id/ivLogo"
+        android:layout_width="278dp"
+        android:layout_height="48dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:outlineProvider="bounds"
+        app:srcCompat="@drawable/nux_dayone_landing_logo" />
+
+    <View
+        style="@style/Divider"
+        android:layout_below="@+id/ivLogo"
+        android:layout_marginTop="5dp" />
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivLogo"
+        android:layout_marginTop="8dp"
         android:layout_marginBottom="?attr/actionBarSize">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvPosts"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:padding="8dp" />
+            android:layout_centerInParent="true" />
+
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 

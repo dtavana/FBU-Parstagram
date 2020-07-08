@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="8dp"
+    android:background="@android:color/black"
     android:orientation="vertical">
 
     <TextView
@@ -11,6 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:textColor="@android:color/white"
         tools:text="dtavana" />
 
     <ImageView
@@ -25,5 +26,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
+        android:textColor="@android:color/white"
         tools:text="whats poppin" />
+
+    <View
+        style="@style/Divider"
+        android:layout_below="@+id/ivLogo"
+        android:layout_marginTop="5dp" />
 </LinearLayout>

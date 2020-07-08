@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/black"
     tools:context=".activities.ProfileActivity">
 
     <include
-        layout="@layout/navigation"
-        android:id="@+id/navigation" />
+        android:id="@+id/navigation"
+        layout="@layout/navigation" />
 
     <Button
         android:id="@+id/btnLogout"
@@ -16,5 +18,28 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="false"
         android:layout_centerInParent="true"
-        android:text="Logout" />
+        android:background="@color/colorAlmostBlack"
+        android:text="Logout"
+        android:textColor="@android:color/white" />
+
+    <ImageView
+        android:id="@+id/ivAvatar"
+        android:layout_width="125dp"
+        android:layout_height="125dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:tint="@android:color/white"
+        app:srcCompat="@drawable/instagram_user_outline_24" />
+
+    <TextView
+        android:id="@+id/tvUsername"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/ivAvatar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:textColor="@android:color/white"
+        android:textSize="20sp"
+        tools:text="dtavana" />
 </RelativeLayout>
