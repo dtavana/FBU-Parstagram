@@ -1,12 +1,18 @@
 package com.dtavana.parstagram.models;
 
+import android.text.format.DateUtils;
+
 import com.parse.ParseClassName;
 import com.parse.ParseFile;
 import com.parse.ParseObject;
 import com.parse.ParseUser;
 
+import java.util.Date;
+
 @ParseClassName("Post")
 public class Post extends ParseObject {
+
+    public Post() {}
 
     public static final String KEY_DESCRIPTION = "description";
     public static final String KEY_IMAGE = "image";
@@ -35,5 +41,9 @@ public class Post extends ParseObject {
 
     public void setUser(ParseUser user) {
         put(KEY_USER, user);
+    }
+
+    public String getRelativeTimeAgo() {
+        return (String) DateUtils.getRelativeTimeSpanString(getCreatedAt().getTime());
     }
 }
