@@ -18,6 +18,7 @@ import android.widget.Toast;
 import com.dtavana.parstagram.R;
 import com.dtavana.parstagram.databinding.ActivityProfileBinding;
 import com.dtavana.parstagram.models.User;
+import com.dtavana.parstagram.utils.BitmapScaler;
 import com.dtavana.parstagram.utils.GlideApp;
 import com.dtavana.parstagram.utils.NavigationUtils;
 import com.parse.LogOutCallback;
@@ -27,7 +28,10 @@ import com.parse.ParseFile;
 import com.parse.ParseUser;
 import com.parse.SaveCallback;
 
+import java.io.ByteArrayOutputStream;
 import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Objects;
 
 import static androidx.core.content.FileProvider.getUriForFile;
@@ -58,7 +62,6 @@ public class ProfileActivity extends AppCompatActivity {
             GlideApp
                     .with(this)
                     .load(avatar.getUrl())
-                    .override(150, 150)
                     .into(binding.ivAvatar);
         }
 
@@ -89,15 +92,29 @@ public class ProfileActivity extends AppCompatActivity {
         if (requestCode == CAPTURE_IMAGE_ACTIVITY_REQUEST_CODE) {
             if (resultCode == RESULT_OK) {
                 Log.i(TAG, "onActivityResult: Succesfully took avatar");
-                User.setAvatar(new ParseFile(photoFile));
+
+                Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
+                Bitmap resizedBitmapWidth = BitmapScaler.scaleToFitWidth(takenImage, 125);
+                Bitmap resizedBitmap = BitmapScaler.scaleToFitHeight(resizedBitmapWidth, 125);
+                // Configure byte output stream
+                ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                resizedBitmap.compress(Bitmap.CompressFormat.JPEG, 40, bytes);
+                File resizedFile = getPhotoFileUri(photoFileName + "_resized");
+                try {
+                    resizedFile.createNewFile();
+                    FileOutputStream fos = new FileOutputStream(resizedFile);
+                    fos.write(bytes.toByteArray());
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                binding.ivAvatar.setImageBitmap(resizedBitmap);
+
+                User.setAvatar(new ParseFile(resizedFile));
                 ParseUser.getCurrentUser().saveInBackground(new SaveCallback() {
                     @Override
                     public void done(ParseException e) {
                         Log.i(TAG, "done: Succesfully saved new avatar");
-                        Bitmap takenImage = BitmapFactory.decodeFile(photoFile.getAbsolutePath());
-                        // RESIZE BITMAP, see section below
-                        // Load the taken image into a preview
-                        binding.ivAvatar.setImageBitmap(takenImage);
                     }
                 });
             } else { // Result was a failure
